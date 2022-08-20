@@ -1,1 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
+
+.time {
+    height: 2em;
+    background-color: var(--bs-primary);
+    transition: width 1s;
+}
+
+.time-bar {
+    height: 25vh;
+}
