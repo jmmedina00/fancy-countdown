@@ -50,6 +50,10 @@ const config = {
           },
         ],
       },
+      {
+        test: /\.html$/,
+        loader: "html-loader",
+      },
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/
