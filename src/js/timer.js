@@ -6,10 +6,13 @@ export const getTimerComponent = () => {
 
   const timerWrapper = document.createElement("div");
   timerWrapper.classList.add("container-sm");
+  timerWrapper.classList.add("flex-grow-1");
+  timerWrapper.classList.add("d-flex");
 
   const timerComponent = document.createElement("div");
   timerComponent.classList.add("row");
-  timerComponent.classList.add("flex-nowrap");
+  timerComponent.classList.add("flex-grow-1");
+  timerComponent.classList.add("align-self-center");
 
   for (const component of unitComponents) {
     timerComponent.appendChild(component);
