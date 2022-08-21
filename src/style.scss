@@ -6,10 +6,22 @@
   transition: width 1s;
 }
 
-.time-bar {
-  height: 20em;
+@include media-breakpoint-down(lg) {
+  .time-bar {
+    height: 15em;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .time-bar {
+    height: 30em;
+  }
+}
+@include media-breakpoint-up(xxl) {
+  .time-bar {
+    height: 45em;
+  }
 }
 
 .number {
-  font-size: 2em;
+  font-size: 2.25em;
 }
