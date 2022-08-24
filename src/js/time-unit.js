@@ -3,12 +3,12 @@ import { getComponent } from "./component";
 import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
 
-export const getTimeUnitComponent = ([unitLabel = "", timer]) => {
+export const getTimeUnitComponent = ([unitLabel = "", timerObservable]) => {
   const timeUnitComponent = getComponent(timeUnitSrc);
   const numberLabelNode = timeUnitComponent.querySelector(".number");
   const unitLabelNode = timeUnitComponent.querySelector(".label .col");
 
-  timer.subscribe({
+  timerObservable.subscribe({
     next: (x) => {
       numberLabelNode.innerHTML = ("" + x).padStart(2, 0);
     },
@@ -17,7 +17,9 @@ export const getTimeUnitComponent = ([unitLabel = "", timer]) => {
     },
   });
 
-  timer.pipe(first()).subscribe(() => new bootstrap.Collapse(numberLabelNode));
+  timerObservable
+    .pipe(first())
+    .subscribe(() => new bootstrap.Collapse(numberLabelNode));
 
   unitLabelNode.innerHTML = unitLabel;
 
