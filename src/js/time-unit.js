@@ -1,5 +1,7 @@
 import timeUnitSrc from "../html/time-unit-counter.html";
 import { getComponent } from "./component";
+import { first } from "rxjs";
+import * as bootstrap from "bootstrap";
 
 export const getTimeUnitComponent = ([unitLabel = "", timer]) => {
   const timeUnitComponent = getComponent(timeUnitSrc);
@@ -14,6 +16,9 @@ export const getTimeUnitComponent = ([unitLabel = "", timer]) => {
       numberLabelNode.innerHTML = "00";
     },
   });
+
+  timer.pipe(first()).subscribe(() => new bootstrap.Collapse(numberLabelNode));
+
   unitLabelNode.innerHTML = unitLabel;
 
   return timeUnitComponent;
