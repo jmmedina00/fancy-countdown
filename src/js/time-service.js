@@ -1,5 +1,5 @@
 import { duration } from "moment";
-import { interval, takeUntil, timer, map, startWith } from "rxjs";
+import { interval, takeUntil, timer, map } from "rxjs";
 
 export const provideTimers = (time = 1) => {
   const stopTime = (time + 1) * 1000;
@@ -21,5 +21,5 @@ export const provideTimers = (time = 1) => {
     };
   }
 
-  return [stopTimer, unitTimers];
+  return { stopTimer, remainingTime, unitTimers };
 };

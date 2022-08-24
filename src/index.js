@@ -16,9 +16,9 @@ setTimeout(() => {
   timeBar.style.width = "30%";
 }, 2000);
 
-const [stopTimer, unitTimers] = provideTimers(140);
+const { stopTimer, unitTimers } = provideTimers(140);
 
-stopTimer.subscribe(() => alert("Complete!"));
+// stopTimer.subscribe(() => alert("Complete!"));
 
 for (const [unitName, unitTimer] of Object.entries(unitTimers)) {
   unitTimer.subscribe((x) => console.log(`${unitName}: ${x}`));
