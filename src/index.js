@@ -6,20 +6,14 @@ import { getTimerComponent } from "./js/timer";
 import { provideTimers } from "./js/time-service";
 
 console.log("Hello World!");
+const { stopTimer, unitTimers } = provideTimers(140);
+
 const timeBar = timeBarComponent.cloneNode(true);
 addToBody(timeBar);
 
-const timer = getTimerComponent();
+const timer = getTimerComponent(unitTimers);
 addToBody(timer);
 
 setTimeout(() => {
   timeBar.style.width = "30%";
 }, 2000);
-
-const { stopTimer, unitTimers } = provideTimers(140);
-
-// stopTimer.subscribe(() => alert("Complete!"));
-
-for (const [unitName, unitTimer] of Object.entries(unitTimers)) {
-  unitTimer.subscribe((x) => console.log(`${unitName}: ${x}`));
-}
