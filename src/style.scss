@@ -4,6 +4,7 @@
   height: 2em;
   background-color: var(--bs-primary);
   transition: width 1s;
+  width: 0%;
 }
 
 @include media-breakpoint-down(lg) {
