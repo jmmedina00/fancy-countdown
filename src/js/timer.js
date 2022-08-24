@@ -7,9 +7,7 @@ export const getTimerComponent = (unitTimers) => {
   const timerContainer =
     wrappedTimerComponent.querySelector(".align-self-center");
 
-  const entries = Object.entries(unitTimers);
-
-  // const units = ["Minutes", "Seconds"];
+  const entries = Object.entries(unitTimers).reverse();
   const unitComponents = entries.map((entry) => getTimeUnitComponent(entry));
 
   for (const component of unitComponents) {
