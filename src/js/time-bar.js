@@ -1,6 +1,7 @@
 import timeBarSrc from "../html/time-bar.html";
 import { getComponent } from "./component";
 import { map } from "rxjs";
+import { colors } from "./theme";
 
 export const getTimeBarComponent = (baseTime, remainingTime) => {
   const component = getComponent(timeBarSrc);
@@ -9,6 +10,12 @@ export const getTimeBarComponent = (baseTime, remainingTime) => {
     next: (t) => {
       const percent = ((t / baseTime) * 100).toFixed(2);
       component.style.width = `${percent}%`;
+      component.style.backgroundColor =
+        percent < 25
+          ? colors.danger
+          : percent < 50
+          ? colors.warning
+          : colors.primary;
     },
     complete: () => {
       component.style.width = "0";
