@@ -16,11 +16,10 @@ export const provideTimerObservables = (time = 1) => {
     minutes: remainingTimeObservable.pipe(map((t) => duration(t).minutes())),
   };
 
-  if (duration(time).asMinutes() > 60) {
-    unitTimerObservables = {
-      ...unitTimerObservables,
-      hours: remainingTimeObservable.pipe(map((t) => duration(t).hours())),
-    };
+  if (duration(time * 1000).asMinutes() > 60) {
+    unitTimerObservables["hours"] = remainingTimeObservable.pipe(
+      map((t) => duration(t).hours())
+    );
   }
 
   return { stopTimerObservable, remainingTimeObservable, unitTimerObservables };
