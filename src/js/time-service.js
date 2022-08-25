@@ -1,6 +1,17 @@
 import { duration } from "moment";
 import { interval, takeUntil, timer, map } from "rxjs";
 
+export const getTimeUnitMaximums = (time = 1) => {
+  const timeDuration = duration(time * 1000);
+  const minutes = timeDuration.asMinutes();
+
+  return {
+    seconds: 59,
+    minutes: minutes >= 60 ? 59 : minutes,
+    hours: timeDuration.asHours(),
+  };
+};
+
 export const provideTimerObservables = (time = 1) => {
   const stopTime = (time + 1) * 1000;
   const stopTimerObservable = timer(stopTime);
