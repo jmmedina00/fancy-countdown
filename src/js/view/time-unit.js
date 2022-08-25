@@ -1,8 +1,8 @@
-import timeUnitSrc from "../html/time-unit-counter.html";
-import { getComponent } from "./component";
+import timeUnitSrc from "../../html/time-unit-counter.html";
+import { getComponent } from "../util/component";
 import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
-import { colors } from "./theme";
+import { colors } from "../util/theme";
 
 export const getTimeUnitComponent = ([
   unitLabel = "",

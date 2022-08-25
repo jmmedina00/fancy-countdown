@@ -1,7 +1,7 @@
-import timeBarSrc from "../html/time-bar.html";
-import { getComponent } from "./component";
+import timeBarSrc from "../../html/time-bar.html";
+import { getComponent } from "../util/component";
 import { map } from "rxjs";
-import { colors } from "./theme";
+import { colors } from "../util/theme";
 
 export const getTimeBarComponent = (baseTime, remainingTimeObservable) => {
   const component = getComponent(timeBarSrc);

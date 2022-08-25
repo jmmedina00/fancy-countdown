@@ -1,5 +1,5 @@
-import timerSrc from "../html/timer-wrapper.html";
-import { getComponent } from "./component";
+import timerSrc from "../../html/timer-wrapper.html";
+import { getComponent } from "../util/component";
 import { getTimeUnitComponent } from "./time-unit";
 
 export const getTimerComponent = (
