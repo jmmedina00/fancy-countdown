@@ -6,20 +6,23 @@ import * as bootstrap from "bootstrap";
 export const getTimeUnitComponent = ([
   unitLabel = "",
   timerObservable,
-  timeUnitMaximums,
+  timeUnitMaximum,
 ]) => {
-  console.log(`${unitLabel}: ${timeUnitMaximums}`);
-
   const timeUnitComponent = getComponent(timeUnitSrc);
   const numberLabelNode = timeUnitComponent.querySelector(".number");
   const unitLabelNode = timeUnitComponent.querySelector(".label .col");
+  const timeUnitBar = timeUnitComponent.querySelector(".time-unit-bar .col");
 
   timerObservable.subscribe({
     next: (x) => {
       numberLabelNode.innerHTML = ("" + x).padStart(2, 0);
+
+      const percent = (x / timeUnitMaximum) * 100;
+      timeUnitBar.style.height = `${percent}%`;
     },
     complete: () => {
       numberLabelNode.innerHTML = "00";
+      timeUnitBar.style.height = "0";
     },
   });
 
