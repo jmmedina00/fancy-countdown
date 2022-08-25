@@ -3,7 +3,13 @@ import { getComponent } from "./component";
 import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
 
-export const getTimeUnitComponent = ([unitLabel = "", timerObservable]) => {
+export const getTimeUnitComponent = ([
+  unitLabel = "",
+  timerObservable,
+  timeUnitMaximums,
+]) => {
+  console.log(`${unitLabel}: ${timeUnitMaximums}`);
+
   const timeUnitComponent = getComponent(timeUnitSrc);
   const numberLabelNode = timeUnitComponent.querySelector(".number");
   const unitLabelNode = timeUnitComponent.querySelector(".label .col");
