@@ -1,12 +1,12 @@
 import "./style.scss";
 import * as bootstrap from "bootstrap";
-import { addToBody } from "./js/component";
-import { getTimeBarComponent } from "./js/time-bar";
-import { getTimerComponent } from "./js/timer";
+import { addToBody } from "./js/util/component";
+import { getTimeBarComponent } from "./js/view/time-bar";
+import { getTimerComponent } from "./js/view/timer";
 import {
   getTimeUnitMaximums,
   provideTimerObservables,
-} from "./js/time-service";
+} from "./js/service/time-service";
 
 console.log("Hello World!");
 const { stopTimerObservable, unitTimerObservables, remainingTimeObservable } =
