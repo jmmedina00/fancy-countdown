@@ -7,17 +7,17 @@
 }
 
 @include media-breakpoint-down(lg) {
-  .time-bar {
+  .time-unit-bar {
     height: 15em;
   }
 }
 @include media-breakpoint-up(lg) {
-  .time-bar {
+  .time-unit-bar {
     height: 30em;
   }
 }
 @include media-breakpoint-up(xxl) {
-  .time-bar {
+  .time-unit-bar {
     height: 45em;
   }
 }
