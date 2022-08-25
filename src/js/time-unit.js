@@ -2,6 +2,7 @@ import timeUnitSrc from "../html/time-unit-counter.html";
 import { getComponent } from "./component";
 import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
+import { colors } from "./theme";
 
 export const getTimeUnitComponent = ([
   unitLabel = "",
@@ -13,12 +14,32 @@ export const getTimeUnitComponent = ([
   const unitLabelNode = timeUnitComponent.querySelector(".label .col");
   const timeUnitBar = timeUnitComponent.querySelector(".time-unit-bar .col");
 
+  const getBarColor = (time) => {
+    // Three color ranges, remove warning, then success if maximum lower than 3
+    // Refactor to accept an array, remove colors from the center as max gets lower
+    if (timeUnitMaximum == 1) {
+      return colors.danger;
+    }
+
+    if (timeUnitMaximum == 2) {
+      return time == 1 ? colors.danger : colors.success;
+    }
+
+    const threshold = Math.floor(timeUnitMaximum / 3);
+    return time < threshold
+      ? colors.danger
+      : time < threshold * 2
+      ? colors.warning
+      : colors.success;
+  };
+
   timerObservable.subscribe({
     next: (x) => {
       numberLabelNode.innerHTML = ("" + x).padStart(2, 0);
 
       const percent = (x / timeUnitMaximum) * 100;
       timeUnitBar.style.height = `${percent}%`;
+      timeUnitBar.style.backgroundColor = getBarColor(x);
     },
     complete: () => {
       numberLabelNode.innerHTML = "00";
