@@ -3,7 +3,10 @@
 .time {
   height: 2em;
   transition: width 1s, background-color 1s;
-  width: 0%;
+}
+
+.time-unit-bar .col {
+  transition: height 1s, background-color 1s;
 }
 
 @include media-breakpoint-down(lg) {

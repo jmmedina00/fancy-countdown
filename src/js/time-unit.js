@@ -22,7 +22,7 @@ export const getTimeUnitComponent = ([
     }
 
     if (timeUnitMaximum == 2) {
-      return time == 1 ? colors.danger : colors.success;
+      return time <= 1 ? colors.danger : colors.success;
     }
 
     const threshold = Math.floor(timeUnitMaximum / 3);
