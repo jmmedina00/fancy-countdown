@@ -3,12 +3,12 @@ import { interval, takeUntil, timer, map } from "rxjs";
 
 export const getTimeUnitMaximums = (time = 1) => {
   const timeDuration = duration(time * 1000);
-  const minutes = timeDuration.asMinutes();
+  const minutes = Math.floor(timeDuration.asMinutes());
 
   return {
     seconds: 59,
     minutes: minutes >= 60 ? 59 : minutes,
-    hours: timeDuration.asHours(),
+    hours: Math.floor(timeDuration.asHours()),
   };
 };
 
