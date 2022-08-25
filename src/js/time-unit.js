@@ -25,10 +25,10 @@ export const getTimeUnitComponent = ([
       return time <= 1 ? colors.danger : colors.success;
     }
 
-    const threshold = Math.floor(timeUnitMaximum / 3);
-    return time < threshold
+    const timePercent = time / timeUnitMaximum;
+    return timePercent <= 1 / 3
       ? colors.danger
-      : time < threshold * 2
+      : timePercent <= 2 / 3
       ? colors.warning
       : colors.success;
   };
