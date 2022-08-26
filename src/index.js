@@ -1,22 +1,22 @@
 import "./style.scss";
 import * as bootstrap from "bootstrap";
-import { addToBody } from "./js/util/component";
-import { getTimeBarComponent } from "./js/view/time-bar";
-import { getTimerComponent } from "./js/view/timer";
-import {
-  getTimeUnitMaximums,
-  provideTimerObservables,
-} from "./js/service/time-service";
+import { addToBody, getComponent } from "./js/util/component";
+import testSrc from "./html/test.html";
+import { getCountdownComponents } from "./js/assembler/countdown";
 
-console.log("Hello World!");
-const { stopTimerObservable, unitTimerObservables, remainingTimeObservable } =
-  provideTimerObservables(140);
+const decideComponents = () => {
+  const params = new URL(document.documentURI).searchParams;
 
-const timeBarComponent = getTimeBarComponent(140, remainingTimeObservable);
-addToBody(timeBarComponent);
+  if (!params.has("time") || Number.isNaN(+params.get("time"))) {
+    return [getComponent(testSrc)];
+  }
 
-const timerComponent = getTimerComponent(
-  unitTimerObservables,
-  getTimeUnitMaximums(140)
-);
-addToBody(timerComponent);
+  const time = +params.get("time");
+  return getCountdownComponents(time);
+};
+
+const components = decideComponents();
+
+for (const component of components) {
+  addToBody(component);
+}
