@@ -9,6 +9,10 @@
   transition: height 1s, background-color 1s;
 }
 
+.time-input {
+  padding-left: 1.6em;
+}
+
 @include media-breakpoint-down(lg) {
   .time-unit-bar {
     height: 15em;
