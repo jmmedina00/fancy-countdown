@@ -17,13 +17,17 @@ export const getTestTimeUnitComponents = () => {
   const timerContainer =
     wrappedTimerComponent.querySelector(".align-self-center");
 
-  rangeObservable.pipe(debounceTime(1000)).subscribe((x) => console.log(x));
+  let timeUnitComponent = document.createElement("div");
 
-  const timeUnitComponent = getTimeUnitComponent([
-    "Test",
-    getMockedTimeObservable(5),
-    5,
-  ]);
+  rangeObservable.pipe(debounceTime(1000)).subscribe((maximum) => {
+    const newTimeUnitComponent = getTimeUnitComponent([
+      "Test",
+      getMockedTimeObservable(maximum),
+      maximum,
+    ]);
+    timerContainer.replaceChild(newTimeUnitComponent, timeUnitComponent);
+    timeUnitComponent = newTimeUnitComponent;
+  });
 
   timerContainer.appendChild(timeUnitComponent);
 
