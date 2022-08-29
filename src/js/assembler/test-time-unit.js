@@ -6,7 +6,7 @@ import { getTimeUnitComponent } from "../view/time-unit";
 
 const getMockedTimeObservable = (maximum = 1) =>
   merge(of(1).pipe(delay(500)), fromEvent(document, "click")).pipe(
-    map((_, index) => maximum - (index % (maximum + 1)))
+    map((_, index) => +maximum - (index % (+maximum + 1)))
   );
 
 export const getTestTimeUnitComponents = () => {
