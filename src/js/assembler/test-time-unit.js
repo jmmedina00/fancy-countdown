@@ -4,6 +4,11 @@ import { getTestRangeComponentAndObservable } from "../view/test-range";
 import timerSrc from "../../html/timer-wrapper.html";
 import { getTimeUnitComponent } from "../view/time-unit";
 
+const getMockedTimeObservable = (maximum = 1) =>
+  merge(of(1).pipe(delay(500)), fromEvent(document, "click")).pipe(
+    map((_, index) => maximum - (index % (maximum + 1)))
+  );
+
 export const getTestTimeUnitComponents = () => {
   const { component, observable: rangeObservable } =
     getTestRangeComponentAndObservable();
@@ -14,14 +19,9 @@ export const getTestTimeUnitComponents = () => {
 
   rangeObservable.pipe(debounceTime(1000)).subscribe((x) => console.log(x));
 
-  const mockedTimeObservable = merge(
-    of(1).pipe(delay(500)),
-    fromEvent(document, "click")
-  ).pipe(map((_, index) => 5 - (index % 6)));
-
   const timeUnitComponent = getTimeUnitComponent([
     "Test",
-    mockedTimeObservable, //Placeholder observable
+    getMockedTimeObservable(5),
     5,
   ]);
 
