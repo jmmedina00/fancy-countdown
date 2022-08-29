@@ -1,4 +1,4 @@
-import { merge, debounceTime, fromEvent, of, timer, delay } from "rxjs";
+import { merge, debounceTime, fromEvent, of, timer, delay, map } from "rxjs";
 import { getComponent } from "../util/component";
 import { getTestRangeComponentAndObservable } from "../view/test-range";
 import timerSrc from "../../html/timer-wrapper.html";
@@ -14,11 +14,14 @@ export const getTestTimeUnitComponents = () => {
 
   rangeObservable.pipe(debounceTime(1000)).subscribe((x) => console.log(x));
 
-  const mockedTimeObservable = fromEvent(document, "click");
+  const mockedTimeObservable = merge(
+    of(1).pipe(delay(500)),
+    fromEvent(document, "click")
+  ).pipe(map((_, index) => 5 - (index % 6)));
 
   const timeUnitComponent = getTimeUnitComponent([
     "Test",
-    merge(of(5), timer(1000)).pipe(delay(500)), //Placeholder observable
+    mockedTimeObservable, //Placeholder observable
     5,
   ]);
 
