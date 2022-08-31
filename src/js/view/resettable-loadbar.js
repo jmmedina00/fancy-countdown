@@ -1,17 +1,17 @@
-import { fromEvent } from "rxjs";
+import { distinctUntilChanged } from "rxjs";
 import loadBarSrc from "../../html/loadbar.html";
 import { getComponent } from "../util/component";
 
 const getNewLoadBar = () => getComponent(loadBarSrc);
 
-export const getResettableLoadBarComponent = () => {
+export const getResettableLoadBarComponent = (resetObservable) => {
   const component = document.createElement("div");
   component.classList.add("container-sm");
 
   let loadBar = getNewLoadBar();
   component.appendChild(loadBar);
 
-  fromEvent(document, "click").subscribe(() => {
+  resetObservable.pipe(distinctUntilChanged()).subscribe(() => {
     const newLoadBar = getNewLoadBar();
     component.replaceChild(newLoadBar, loadBar);
     loadBar = newLoadBar;

@@ -6,7 +6,7 @@ export const getTestTimeUnitComponents = () => {
   const { component: rangeComponent, observable: rangeObservable } =
     getTestRangeComponentAndObservable();
 
-  const loadBarComponent = getResettableLoadBarComponent();
+  const loadBarComponent = getResettableLoadBarComponent(rangeObservable);
 
   const mockedTimerComponent = getTestTimeDisplayComponent(rangeObservable);
 
