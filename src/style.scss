@@ -33,7 +33,17 @@
   font-size: 5em;
 }
 
+@keyframes empty-bar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
 .deplete {
   height: 2em;
-  width: 100%;
+  animation: empty-bar 1s;
+  animation-timing-function: linear;
 }
