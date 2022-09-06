@@ -25,11 +25,18 @@ export const getTimePromptComponent = (collectTriggerObservable) => {
         +inputNodes[index].value,
       ]);
 
-      return { values: Object.fromEntries(valueEntries) };
+      const valid =
+        !valueEntries.every(
+          ([_, value]) => Number.isNaN(value) || value <= 0
+        ) &&
+        valueEntries.every(
+          ([_, value], index) =>
+            value >= 0 && value <= Object.entries(units)[index][1]
+        );
+
+      return { valid, values: Object.fromEntries(valueEntries) };
     })
   );
-
-  observable.subscribe(console.log);
 
   for (const inputComponent of inputComponents) {
     timePromptContainer.appendChild(inputComponent);
