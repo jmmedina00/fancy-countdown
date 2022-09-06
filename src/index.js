@@ -5,6 +5,7 @@ import timeFormSrc from "./html/time-form.html";
 import { getCountdownComponents } from "./js/assembler/countdown";
 import { getTestTimeUnitComponents } from "./js/assembler/test-time-unit";
 import { getTimePromptComponent } from "./js/view/time-prompt";
+import { getTimeFormComponents } from "./js/assembler/time-form";
 
 const decideComponents = () => {
   const params = new URL(document.documentURI).searchParams;
@@ -14,7 +15,7 @@ const decideComponents = () => {
   }
 
   if (!params.has("time") || Number.isNaN(+params.get("time"))) {
-    return [getTimePromptComponent()];
+    return getTimeFormComponents();
   }
 
   const time = +params.get("time");
