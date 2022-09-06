@@ -1,6 +1,11 @@
 import { duration } from "moment";
 import { interval, takeUntil, timer, map } from "rxjs";
 
+export const getDurationInSeconds = (timeObject) => {
+  const timeDuration = duration(timeObject);
+  return timeDuration.asSeconds();
+};
+
 export const getTimeUnitMaximums = (time = 1) => {
   const timeDuration = duration(time * 1000);
   const minutes = Math.floor(timeDuration.asMinutes());
