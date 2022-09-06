@@ -10,8 +10,8 @@ export const getTimePromptComponent = (collectTriggerObservable) => {
     seconds: 59,
   };
 
-  const timePromptComponent = getComponent(timePromptSrc);
-  const timePromptContainer = timePromptComponent.querySelector(".time-prompt");
+  const component = getComponent(timePromptSrc);
+  const timePromptContainer = component.querySelector(".time-prompt");
 
   const inputComponents = Object.entries(units).map(getTimeInputComponent);
   const inputNodes = inputComponents.map((component) =>
@@ -42,5 +42,5 @@ export const getTimePromptComponent = (collectTriggerObservable) => {
     timePromptContainer.appendChild(inputComponent);
   }
 
-  return timePromptComponent;
+  return { component, observable };
 };
