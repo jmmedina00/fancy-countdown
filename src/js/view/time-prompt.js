@@ -1,4 +1,4 @@
-import { fromEvent } from "rxjs";
+import { fromEvent, map } from "rxjs";
 import timePromptSrc from "../../html/time-form.html";
 import timeInputSrc from "../../html/time-input.html";
 import { getComponent } from "../util/component";
@@ -23,7 +23,7 @@ const getTimeInputComponent = ([label = "", maximum = 0]) => {
   return timeInputComponent;
 };
 
-export const getTimePromptComponent = () => {
+export const getTimePromptComponent = (collectTriggerObservable) => {
   const units = {
     hours: 23,
     minutes: 59,
@@ -33,8 +33,25 @@ export const getTimePromptComponent = () => {
   const timePromptComponent = getComponent(timePromptSrc);
   const timePromptContainer = timePromptComponent.querySelector(".time-prompt");
 
-  for (const unit of Object.entries(units)) {
-    const inputComponent = getTimeInputComponent(unit);
+  const inputComponents = Object.entries(units).map(getTimeInputComponent);
+  const inputNodes = inputComponents.map((component) =>
+    component.querySelector(".time-input")
+  );
+
+  const observable = collectTriggerObservable.pipe(
+    map(() => {
+      const valueEntries = Object.entries(units).map(([label], index) => [
+        label,
+        +inputNodes[index].value,
+      ]);
+
+      return { values: Object.fromEntries(valueEntries) };
+    })
+  );
+
+  observable.subscribe(console.log);
+
+  for (const inputComponent of inputComponents) {
     timePromptContainer.appendChild(inputComponent);
   }
 
