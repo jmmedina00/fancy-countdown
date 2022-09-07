@@ -13,19 +13,15 @@ export const getTestTimeDisplayComponent = (timeUnitReplaceObservable) => {
   const timerContainer =
     wrappedTimerComponent.querySelector(".align-self-center");
 
-  let timeUnitComponent = document.createElement("div");
-
   timeUnitReplaceObservable.pipe(debounceTime(1000)).subscribe((maximum) => {
-    const newTimeUnitComponent = getTimeUnitComponent([
+    const timeUnitComponent = getTimeUnitComponent([
       "Test",
       getMockedTimeObservable(maximum),
       maximum,
     ]);
 
-    timerContainer.replaceChild(newTimeUnitComponent, timeUnitComponent);
-    timeUnitComponent = newTimeUnitComponent;
+    timerContainer.replaceChildren(timeUnitComponent);
   });
 
-  timerContainer.appendChild(timeUnitComponent);
   return wrappedTimerComponent;
 };
