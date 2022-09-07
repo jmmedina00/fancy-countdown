@@ -2,6 +2,7 @@ import {
   getTimeUnitMaximums,
   provideTimerObservables,
 } from "../service/time-service";
+import { getModalComponent } from "../view/modal";
 import { getTimeBarComponent } from "../view/time-bar";
 import { getTimerComponent } from "../view/timer";
 
@@ -14,6 +15,9 @@ export const getCountdownComponents = (time = 0) => {
     unitTimerObservables,
     getTimeUnitMaximums(time)
   );
+
+  const timesUpModal = getModalComponent("Time's up!");
+  stopTimerObservable.subscribe(() => timesUpModal.show());
 
   return [timeBarComponent, timerComponent];
 };
