@@ -4,6 +4,9 @@ import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
 import { colors } from "../util/theme";
 
+const { pink, indigo, purple, orange, danger } = colors;
+const timeUnitColors = [pink, indigo, purple, orange, danger];
+
 export const getTimeUnitComponent = ([
   unitLabel = "",
   timerObservable,
@@ -13,6 +16,21 @@ export const getTimeUnitComponent = ([
   const numberLabelNode = timeUnitComponent.querySelector(".number");
   const unitLabelNode = timeUnitComponent.querySelector(".label .col");
   const timeUnitBar = timeUnitComponent.querySelector(".time-unit-bar .col");
+
+  const getReducedTimeUnitColors = (colors = []) => {
+    const numberOfColors = colors.length;
+    const indexToRemove =
+      numberOfColors % 2 === 0
+        ? numberOfColors / 2 - 1
+        : Math.floor(numberOfColors / 2);
+    const reducedColors = colors.filter((_, index) => index !== indexToRemove);
+
+    console.log(reducedColors);
+
+    return reducedColors.length <= timeUnitMaximum
+      ? reducedColors
+      : getReducedTimeUnitColors(reducedColors);
+  };
 
   const getBarColor = (time) => {
     // Three color ranges, remove warning, then success if maximum lower than 3
