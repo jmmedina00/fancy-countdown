@@ -1,4 +1,15 @@
-const colorsExported = ["primary", "warning", "danger", "success"];
+const colorsExported = [
+  "primary",
+  "warning",
+  "danger",
+  "success",
+  "indigo",
+  "purple",
+  "pink",
+  "orange",
+  "teal",
+  "cyan",
+];
 
 const style = getComputedStyle(document.body);
 
