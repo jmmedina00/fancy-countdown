@@ -14,7 +14,7 @@ export const getTimeFormComponents = () => {
   const { component: timePromptComponent, observable: inputTimeObservable } =
     getTimePromptComponent(startButtonObservable);
 
-  const modal = getModalComponent(validationErrorMessage);
+  const validationErrorModal = getModalComponent(validationErrorMessage);
 
   inputTimeObservable
     .pipe(
@@ -27,7 +27,7 @@ export const getTimeFormComponents = () => {
     });
 
   inputTimeObservable.pipe(filter(({ valid }) => !valid)).subscribe(() => {
-    modal.show();
+    validationErrorModal.show();
   });
 
   return [timePromptComponent, startButtonComponent];
