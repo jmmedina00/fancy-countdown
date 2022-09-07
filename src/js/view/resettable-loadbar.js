@@ -8,14 +8,9 @@ export const getResettableLoadBarComponent = (resetObservable) => {
   const component = document.createElement("div");
   component.classList.add("container-sm");
 
-  let loadBar = getNewLoadBar();
-  component.appendChild(loadBar);
-
-  resetObservable.pipe(distinctUntilChanged()).subscribe(() => {
-    const newLoadBar = getNewLoadBar();
-    component.replaceChild(newLoadBar, loadBar);
-    loadBar = newLoadBar;
-  });
+  resetObservable
+    .pipe(distinctUntilChanged())
+    .subscribe(() => component.replaceChildren(getNewLoadBar()));
 
   return component;
 };
