@@ -1,10 +1,7 @@
 import "./style.scss";
-import * as bootstrap from "bootstrap";
-import { addToBody, getComponent } from "./js/util/component";
-import timeFormSrc from "./html/time-form.html";
+import { addToBody } from "./js/util/component";
 import { getCountdownComponents } from "./js/assembler/countdown";
 import { getTestTimeUnitComponents } from "./js/assembler/test-time-unit";
-import { getTimePromptComponent } from "./js/view/time-prompt";
 import { getTimeFormComponents } from "./js/assembler/time-form";
 
 const decideComponents = () => {
