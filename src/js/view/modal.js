@@ -10,13 +10,13 @@ export const getModalComponent = (message = "", links = {}) => {
   const modalFooter = baseModal.querySelector(".modal-footer");
 
   const messageParagraph = document.createElement("p");
-  messageParagraph.innerHTML = message;
+  messageParagraph.innerText = message;
 
   const additionalLinks = Object.entries(links).map(([label, url]) => {
     const element = document.createElement("a");
     element.classList.add("btn", "btn-secondary");
     element.href = url;
-    element.innerHTML = label;
+    element.innerText = label;
 
     return element;
   });

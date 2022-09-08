@@ -62,14 +62,14 @@ export const getTimeUnitComponent = ([
 
   timerObservable.subscribe({
     next: (x) => {
-      numberLabelNode.innerHTML = ("" + x).padStart(2, 0);
+      numberLabelNode.innerText = ("" + x).padStart(2, 0);
 
       const percent = (x / timeUnitMaximum) * 100;
       timeUnitBar.style.height = `${percent}%`;
       timeUnitBar.style.backgroundColor = getBarColor(x);
     },
     complete: () => {
-      numberLabelNode.innerHTML = "00";
+      numberLabelNode.innerText = "00";
       timeUnitBar.style.height = "0";
     },
   });
@@ -78,7 +78,7 @@ export const getTimeUnitComponent = ([
     .pipe(first())
     .subscribe(() => new bootstrap.Collapse(numberLabelNode));
 
-  unitLabelNode.innerHTML = unitLabel;
+  unitLabelNode.innerText = unitLabel;
 
   return timeUnitComponent;
 };
