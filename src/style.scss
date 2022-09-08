@@ -16,18 +16,14 @@ $enable-validation-icons: false;
   padding-left: 1.6em;
 }
 
-@include media-breakpoint-down(lg) {
-  .time-unit-bar {
+.time-unit-bar {
+  @include media-breakpoint-down(lg) {
     height: 15em;
   }
-}
-@include media-breakpoint-up(lg) {
-  .time-unit-bar {
+  @include media-breakpoint-up(lg) {
     height: 30em;
   }
-}
-@include media-breakpoint-up(xxl) {
-  .time-unit-bar {
+  @include media-breakpoint-up(xxl) {
     height: 45em;
   }
 }
