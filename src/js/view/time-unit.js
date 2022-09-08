@@ -25,30 +25,27 @@ export const getTimeUnitComponent = ([
         : Math.floor(numberOfColors / 2);
     const reducedColors = colors.filter((_, index) => index !== indexToRemove);
 
-    console.log(reducedColors);
-
     return reducedColors.length <= timeUnitMaximum
       ? reducedColors
       : getReducedTimeUnitColors(reducedColors);
   };
 
   const getBarColor = (time) => {
-    // Three color ranges, remove warning, then success if maximum lower than 3
-    // Refactor to accept an array, remove colors from the center as max gets lower
-    if (timeUnitMaximum == 1) {
-      return colors.danger;
+    if (timeUnitMaximum < timeUnitColors.length) {
+      const useColors = getReducedTimeUnitColors(timeUnitColors);
+      return useColors[useColors.length - (time || 1)];
     }
 
-    if (timeUnitMaximum == 2) {
-      return time <= 1 ? colors.danger : colors.success;
-    }
+    const thresholds = timeUnitColors.map(
+      (_, index) => (timeUnitColors.length - 1 - index) / timeUnitColors.length
+    );
 
     const timePercent = time / timeUnitMaximum;
-    return timePercent <= 1 / 3
-      ? colors.danger
-      : timePercent <= 2 / 3
-      ? colors.warning
-      : colors.success;
+    const pickedIndex = thresholds.findIndex(
+      (percent) => percent <= timePercent
+    );
+
+    return timeUnitColors[pickedIndex];
   };
 
   timerObservable.subscribe({
