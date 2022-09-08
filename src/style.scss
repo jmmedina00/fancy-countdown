@@ -46,8 +46,21 @@ $enable-validation-icons: false;
   }
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .deplete {
   height: 2em;
   animation: empty-bar 1s;
   animation-timing-function: linear;
+}
+
+.label .col {
+  animation: appear 0.7s;
 }
