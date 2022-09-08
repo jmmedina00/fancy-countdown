@@ -3,9 +3,9 @@
 [![](./img/icons/javascript.png)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![](./img/icons/bootstrap.png)](https://getbootstrap.com/)
 [![](./img/icons/webpack.png)](https://webpack.js.org/)
-[![](./img/icons/reactivex.png)](https://webpack.js.org/)
-[![](./img/icons/momentjs.png)](https://webpack.js.org/)
-[![](./img/icons/sass.png)](https://webpack.js.org/)
+[![](./img/icons/reactivex.png)](https://rxjs.dev/)
+[![](./img/icons/momentjs.png)](https://momentjs.com/)
+[![](./img/icons/sass.png)](https://sass-lang.com/)
 
 Provide a time (up to a day) and it will count to 0!
 
