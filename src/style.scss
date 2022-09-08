@@ -1,6 +1,7 @@
 $enable-validation-icons: false;
 
 @import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
 
 .time {
   height: 2em;
@@ -29,6 +30,11 @@ $enable-validation-icons: false;
   .time-unit-bar {
     height: 45em;
   }
+}
+
+.label .col,
+.number {
+  font-family: "JetBrains Mono", monospace;
 }
 
 .number {
