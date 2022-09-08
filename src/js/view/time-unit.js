@@ -31,6 +31,10 @@ export const getTimeUnitComponent = ([
   };
 
   const getBarColor = (time) => {
+    if (timeUnitMaximum == timeUnitColors.length) {
+      return timeUnitColors[timeUnitColors.length - (time || 1)];
+    }
+
     if (timeUnitMaximum < timeUnitColors.length) {
       const useColors = getReducedTimeUnitColors(timeUnitColors);
       return useColors[useColors.length - (time || 1)];
