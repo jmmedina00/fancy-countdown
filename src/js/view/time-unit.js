@@ -4,8 +4,16 @@ import { first } from "rxjs";
 import * as bootstrap from "bootstrap";
 import { colors } from "../util/theme";
 
-const { pink, indigo, purple, orange, danger } = colors;
-const timeUnitColors = [pink, indigo, purple, orange, danger];
+const { purple, orange, danger, success, primary, cyan, warning } = colors;
+const timeUnitColors = [
+  purple,
+  primary,
+  cyan,
+  success,
+  orange,
+  warning,
+  danger,
+];
 
 export const getTimeUnitComponent = ([
   unitLabel = "",
