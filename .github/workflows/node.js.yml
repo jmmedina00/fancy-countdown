@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: ["main"]
 
+env:
+  NODE_ENV: production
+
 # Pages deploy reference: https://github.com/yuxiang-site/yuxiang-site.github.io/blob/main/.github/workflows/deploy.yml
 
 permissions:
