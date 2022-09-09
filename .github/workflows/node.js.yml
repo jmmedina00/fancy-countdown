@@ -9,13 +9,19 @@ on:
   pull_request:
     branches: ["main"]
 
+# Pages deploy reference: https://github.com/yuxiang-site/yuxiang-site.github.io/blob/main/.github/workflows/deploy.yml
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
 jobs:
   build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      pages: write
-
     strategy:
       matrix:
         node-version: [14.x]
