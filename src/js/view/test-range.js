@@ -7,6 +7,9 @@ export const getTestRangeComponentAndObservable = () => {
   const range = component.querySelector("#maximumRange");
   const currentValueLabel = component.querySelector("#currentValue");
 
+  const backLink = component.querySelector("a");
+  backLink.href = document.referrer;
+
   const refreshValue = (value) => {
     currentValueLabel.innerText = value;
   };
