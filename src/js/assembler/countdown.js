@@ -7,7 +7,7 @@ import { getTimeBarComponent } from "../view/time-bar";
 import { getTimerComponent } from "../view/timer";
 
 const spamLinks = {
-  Home: "/",
+  Home: document.referrer,
   "Go to Linkedin":
     "https://www.linkedin.com/in/juan-miguel-medina-prieto-88926715a/",
 };
